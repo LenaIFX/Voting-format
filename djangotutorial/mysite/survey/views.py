@@ -118,3 +118,9 @@ def reset_data(request):
         return HttpResponse("No data to back up. All survey data and user data have been cleared.")
     else:
         return HttpResponse(f"Backup saved at {backup_file}. All survey data and user data have been cleared.")
+    
+def graph_page(request):
+    context = {
+        'range': range(1, 11),  # Generates numbers from 1 to 10
+    }
+    return render(request, 'survey/graph.html', context)

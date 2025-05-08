@@ -6,3 +6,6 @@ class UserInfoForm(forms.ModelForm):
     class Meta:
         model = UserInfo
         fields = ['username', 'role_in_sc', 'years_working']
+        widgets = {
+            'years_working': forms.NumberInput(attrs={'step': '0.1'}),  # Allows float input
+        }

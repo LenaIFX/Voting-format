@@ -1,0 +1,193 @@
+/*REGISTER PAGE*/
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Active le modèle flexbox */
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    height: 100vh; /* S'assure que le body occupe toute la hauteur de la fenêtre */
+}
+
+/* Container for the form and title */
+.container {
+    display: flex; /* Ajout pour centrer */
+    flex-direction: column; /* Aligne les éléments verticalement */
+    justify-content: center; /* Centre verticalement */
+    align-items: center; /* Centre horizontalement */
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    height: 100%; /* S'assure que le conteneur occupe toute la hauteur disponible */
+}
+
+/* Form container styling */
+form {
+    background-color: #ffffff;
+    padding: 35px;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Form heading */
+h1 {
+    text-align: center;
+    color: #333333;
+    margin-bottom: 20px; /*espacement entre le titre et le formulaire*/
+    font-size: 40px; /* taille de police pour le titre */
+}
+
+/* Form fields */
+form p {
+    margin-bottom: 20px;
+}
+
+form label {
+    font-weight: bold;
+    color: #555555;
+    display: block;
+    margin-bottom: 5px;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* Submit button */
+form button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    form button {
+        font-size: 14px;
+    }
+}
+
+/*GRAPH PAGE*/
+/* General container styling */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Header container styling */
+.header-container {
+    margin-bottom: 20px;
+}
+
+/* Title styling */
+h1 {
+    font-size: 36px;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+/* Explanation text styling */
+.explanation-text {
+    font-size: 18px;
+    color: #555555;
+    margin-bottom: 20px;
+}
+
+/* Graph container styling */
+.graph-container {
+    display: flex;
+    flex-direction: column; /* Stack graphs vertically */
+    align-items: center; /* Center the entire column horizontally */
+    gap: 40px; /* Add spacing between graphs */
+    margin-top: 20px;
+    width: 100%; /* Ensure the container spans the full width */
+}
+
+/* Individual graph wrapper */
+.graph-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the graph and its labels */
+    width: 100%; /* Ensure the wrapper spans the full width */
+    max-width: 900px; /* Increase the max width to make graphs larger */
+    padding: 20px; /* Add padding around the graph */
+    box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+/* Canvas styling */
+canvas {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Allow scaling */
+    max-width: 800px; /* Increase the canvas size */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Submit button styling */
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Ensure the body and html allow scrolling */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    min-height: 100vh; /* Ensure the body spans the full viewport height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    display: block; /* Allow content to flow naturally */
+}
+
+/* Ensure the container spans the full height of the content */
+.container {
+    max-width: 1200px; /* Set a maximum width for the content */
+    margin: 0 auto; /* Center the container horizontally */
+    padding: 20px; /* Add padding around the content */
+    text-align: center; /* Center-align the text */
+    display: block; /* Allow content to flow naturally */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    min-height: 100vh; /* Ensure the container spans the full viewport height */
+}
