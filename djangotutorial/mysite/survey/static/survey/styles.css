@@ -5,22 +5,30 @@ body {
     background-color: #f4f4f9;
     margin: 0;
     padding: 0;
-    display: flex; /* Active le modèle flexbox */
-    justify-content: center; /* Centre horizontalement */
-    align-items: center; /* Centre verticalement */
-    height: 100vh; /* S'assure que le body occupe toute la hauteur de la fenêtre */
+    display: block; /* Allow content to flow naturally */
 }
 
 /* Container for the form and title */
 .container {
-    display: flex; /* Ajout pour centrer */
-    flex-direction: column; /* Aligne les éléments verticalement */
-    justify-content: center; /* Centre verticalement */
-    align-items: center; /* Centre horizontalement */
+    /* Keep this class generic for other pages */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Register Page Container */
+.register-container {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
     text-align: center;
     width: 100%;
     max-width: 400px;
-    height: 100%; /* S'assure que le conteneur occupe toute la hauteur disponible */
+    height: 100vh; /* Make the container span the full viewport height */
+    margin: 0 auto; /* Center the container horizontally */
+    padding: 20px; /* Add padding around the content */
+    box-sizing: border-box; /* Include padding in the width calculation */
 }
 
 /* Form container styling */
@@ -31,13 +39,14 @@ form {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
+    margin-left: 80px; /* Add left margin to move the form to the right */
 }
-
 /* Form heading */
 h1 {
     text-align: center;
     color: #333333;
     margin-bottom: 20px; /*espacement entre le titre et le formulaire*/
+    margin-left: 80px;
     font-size: 40px; /* taille de police pour le titre */
 }
 
