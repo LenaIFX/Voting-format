@@ -9,8 +9,8 @@
 </head>
 <body>
     <div class="container">
-        <!-- Title and Explanation Section -->
-        <div class="header-container">
+         <!-- Title and Explanation Section -->
+         <div class="header-container">
             <h1>Graph Voting</h1>
             <p class="explanation-text">Here is how to vote: you click on the graph, and a red cross will appear at your selected point. When you're done, click Submit. Thank you for your participation!</p>
         </div>
@@ -21,13 +21,18 @@
             <div class="graph-container">
                 {% for i in range %}
                     <div class="graph-wrapper">
-                        <canvas id="graph_{{ i }}" width="700" height="500"></canvas>
+                        <canvas id="graph_{{ i }}" width="1000" height="600"></canvas>
                         <input type="hidden" name="impact_{{ i }}" id="impact_{{ i }}">
                         <input type="hidden" name="probability_{{ i }}" id="probability_{{ i }}">
                     </div>
                 {% endfor %}
             </div>
-            <button type="submit" class="btn-primary">Submit</button>
+            
+            <!-- Separate container for the button -->
+            <div class="button-container">
+                <button type="submit" class="btn-primary">Submit</button>
+            </div>
+
         </form>
     </div>
 
@@ -40,6 +45,10 @@
             // Function to draw the graph
         function drawGraph() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            // Set the graph dimensions to match the canvas
+            const graphWidth = canvas.width - 20; // Add some padding if needed
+            const graphHeight = canvas.height - 20;
+            
             ctx.beginPath();
 
             // Draw X-axis
@@ -52,9 +61,20 @@
             ctx.stroke();
 
             // Add labels for axes
-            ctx.font = '14px Arial';
-            ctx.fillText('Probability (0 to 4)', 350, 480); // X-axis label
-            ctx.fillText('Impact (0 to 4)', 10, 250); // Y-axis label
+            ctx.font = '16px Arial';
+            ctx.fillStyle = '#000000'; // Text color
+
+            // X-axis label: "Probability"
+            ctx.textAlign = 'center';
+            ctx.fillText('Probability', graphWidth / 2.5, 490); // Adjusted position for spacing below the X-axis
+
+            // Y-axis label: "Impact"
+            ctx.save();
+            ctx.translate(10, graphHeight / 2); // Adjusted position for spacing from the Y-axis
+            ctx.rotate(-Math.PI / 2); // Rotate the text vertically
+            ctx.textAlign = 'center';
+            ctx.fillText('Impact', 0, 0);
+            ctx.restore();
 
             // Add tick marks and labels
             for (let j = 0; j <= 4; j++) {

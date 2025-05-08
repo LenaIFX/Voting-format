@@ -103,13 +103,6 @@ form button:hover {
 }
 
 /*GRAPH PAGE*/
-/* General container styling */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 20px;
-}
 
 /* Header container styling */
 .header-container {
@@ -129,74 +122,69 @@ h1 {
     color: #555555;
     margin-bottom: 20px;
 }
-
-/* Graph container styling */
-.graph-container {
-    display: flex;
-    flex-direction: column; /* Stack graphs vertically */
-    align-items: center; /* Center the entire column horizontally */
-    gap: 40px; /* Add spacing between graphs */
-    margin-top: 20px;
-    width: 100%; /* Ensure the container spans the full width */
+body {
+    background-color: #f4f4f9; /* Set the site's background color (grey or brown) */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
 }
 
-/* Individual graph wrapper */
+.container {
+    background-color: white; 
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.graph-container {
+    display: flex;
+    flex-direction: column; /* Stack graphs and button vertically */
+    align-items: flex-end; /* Align the button to the right */
+    gap: 60px; /* Add spacing between graphs and the button */
+    margin-top: 20px;
+    width: 100%; /* Ensure the container spans the full width */
+    background-color: white; /* Match the site's background */
+}
+
 .graph-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center; /* Center the graph and its labels */
     width: 100%; /* Ensure the wrapper spans the full width */
-    max-width: 900px; /* Increase the max width to make graphs larger */
-    padding: 20px; /* Add padding around the graph */
-    box-sizing: border-box; /* Include padding in the width calculation */
+    max-width: 1000px; /* Match the canvas width */
+    padding: 0; /* Remove padding around the graph */
+    margin: 0; /* Remove margin around the graph */
+    background-color: white; /* Match the site's background */
 }
 
-/* Canvas styling */
 canvas {
-    background-color: #ffffff;
-    border: 1px solid #cccccc;
-    border-radius: 6px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%; /* Allow scaling */
-    max-width: 800px; /* Increase the canvas size */
-    height: auto; /* Maintain aspect ratio */
+    background-color: white; /* Make the canvas background transparent */
+    border: 1px solid #cccccc; /* Optional: Add a border to see the graph limits */
+    width: 1000px; /* Set the desired graph width */
+    height: 600px; /* Set the desired graph height */
+    display: block; /* Remove any inline spacing */
+    padding: 0; /* Ensure no padding around the canvas */
+    margin: 0 auto; /* Center the canvas horizontally */
+    box-sizing: border-box; /* Include padding and border in the element's dimensions */
 }
 
 /* Submit button styling */
+.button-container {
+    display: flex;
+    justify-content: flex-end; /* Align the button to the right */
+    margin-top: 20px; /* Add spacing above the button */
+    width: 100%; /* Ensure the container spans the full width */
+}
+
 .btn-primary {
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 20px 20px;
     font-size: 16px;
-    border-radius: 4px;
     cursor: pointer;
-    margin-top: 20px;
+    border-radius: 4px; /* Optional: Add rounded corners */
 }
 
 .btn-primary:hover {
     background-color: #0056b3;
-}
-
-/* Ensure the body and html allow scrolling */
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    min-height: 100vh; /* Ensure the body spans the full viewport height */
-    overflow-y: auto; /* Enable vertical scrolling */
-    display: block; /* Allow content to flow naturally */
-}
-
-/* Ensure the container spans the full height of the content */
-.container {
-    max-width: 1200px; /* Set a maximum width for the content */
-    margin: 0 auto; /* Center the container horizontally */
-    padding: 20px; /* Add padding around the content */
-    text-align: center; /* Center-align the text */
-    display: block; /* Allow content to flow naturally */
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    min-height: 100vh; /* Ensure the container spans the full viewport height */
 }
