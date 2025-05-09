@@ -8,19 +8,19 @@
     <link rel="stylesheet" href="{% static 'survey/styles.css' %}">
 </head>
 <body>
-    <div class="container">
-        <!-- Title and Explanation Section -->
-        <div class="header-container">
+    <div class="graph-page">
+        <!-- Title Section -->
+        <div class="title-container">
             <h1>Graph Voting</h1>
             <p class="explanation-text">
-                Here is how to vote: you click on the graph, and a red cross will appear at your selected point. When you're done, click Submit. Thank you for your participation!
+                Click on the graph to vote. A red cross will appear at your selected point. When you're done, click Submit. Thank you for your participation!
             </p>
         </div>
 
-        <!-- Graphs Section -->
-        <form method="post">
-            {% csrf_token %}
-            <div class="graph-container">
+        <!-- Graph Section -->
+        <div class="graph-container">
+            <form method="post">
+                {% csrf_token %}
                 {% for i in range %}
                     <div class="graph-wrapper">
                         <canvas id="graph_{{ i }}" width="1000" height="600"></canvas>
@@ -28,14 +28,15 @@
                         <input type="hidden" name="probability_{{ i }}" id="probability_{{ i }}">
                     </div>
                 {% endfor %}
-            </div>
+                <!-- Submit Button Section -->
+                    <div class="button-container">
+                        <button type="submit" class="btn-submit">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
 
-            <!-- Submit Button -->
-            <div class="button-container" style="display: flex; justify-content: flex-start; margin-top: 20px;">
-                <button type="submit" class="btn-submit">Submit</button>
-            </div>
-        </form>
-    </div>
+            
 
     <script src="{% static 'survey/scripts.js' %}"></script>
 </body>

@@ -189,3 +189,15 @@ document.addEventListener("DOMContentLoaded", () => {
         canvas.addEventListener("click", (event) => handleCanvasClick(event, canvas, ctx, i));
     }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Select the button container
+    const buttonContainer = document.querySelector(".button-container");
+
+    // Apply styles to move the button to the left
+    if (buttonContainer) {
+        buttonContainer.style.display = "flex";
+        buttonContainer.style.justifyContent = "flex-start"; // Align the button to the left
+        buttonContainer.style.marginTop = "20px"; // Add spacing above the button
+    }
+});
