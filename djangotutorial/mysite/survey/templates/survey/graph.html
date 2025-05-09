@@ -9,10 +9,12 @@
 </head>
 <body>
     <div class="container">
-         <!-- Title and Explanation Section -->
-         <div class="header-container">
+        <!-- Title and Explanation Section -->
+        <div class="header-container">
             <h1>Graph Voting</h1>
-            <p class="explanation-text">Here is how to vote: you click on the graph, and a red cross will appear at your selected point. When you're done, click Submit. Thank you for your participation!</p>
+            <p class="explanation-text">
+                Here is how to vote: you click on the graph, and a red cross will appear at your selected point. When you're done, click Submit. Thank you for your participation!
+            </p>
         </div>
 
         <!-- Graphs Section -->
@@ -27,107 +29,14 @@
                     </div>
                 {% endfor %}
             </div>
-            
-            <!-- Separate container for the button -->
-            <div class="button-container">
-                <button type="submit" class="btn-primary">Submit</button>
-            </div>
 
+            <!-- Submit Button -->
+            <div class="button-container" style="display: flex; justify-content: flex-start; margin-top: 20px;">
+                <button type="submit" class="btn-submit">Submit</button>
+            </div>
         </form>
     </div>
 
-    <script>
-        // Your existing JavaScript code for drawing graphs and handling clicks
-        for (let i = 1; i <= 10; i++) {
-            const canvas = document.getElementById(`graph_${i}`);
-            const ctx = canvas.getContext('2d');
-
-            // Function to draw the graph
-        function drawGraph() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            // Set the graph dimensions to match the canvas
-            const graphWidth = canvas.width - 20; // Add some padding if needed
-            const graphHeight = canvas.height - 20;
-            
-            ctx.beginPath();
-
-            // Draw X-axis
-            ctx.moveTo(50, 450); // Adjusted for new canvas height
-            ctx.lineTo(700, 450); // Adjusted for new canvas width
-
-            // Draw Y-axis
-            ctx.moveTo(50, 450);
-            ctx.lineTo(50, 50); // Adjusted for new canvas height
-            ctx.stroke();
-
-            // Add labels for axes
-            ctx.font = '16px Arial';
-            ctx.fillStyle = '#000000'; // Text color
-
-            // X-axis label: "Probability"
-            ctx.textAlign = 'center';
-            ctx.fillText('Probability', graphWidth / 2.5, 490); // Adjusted position for spacing below the X-axis
-
-            // Y-axis label: "Impact"
-            ctx.save();
-            ctx.translate(10, graphHeight / 2); // Adjusted position for spacing from the Y-axis
-            ctx.rotate(-Math.PI / 2); // Rotate the text vertically
-            ctx.textAlign = 'center';
-            ctx.fillText('Impact', 0, 0);
-            ctx.restore();
-
-            // Add tick marks and labels
-            for (let j = 0; j <= 4; j++) {
-                const x = 50 + j * 150; // Adjusted for new width
-                const y = 450 - j * 100; // Adjusted for new height
-
-                // X-axis ticks
-                ctx.moveTo(x, 445);
-                ctx.lineTo(x, 455);
-                ctx.stroke();
-                ctx.fillText((j).toFixed(1), x - 10, 470);
-
-                // Y-axis ticks
-                ctx.moveTo(45, y);
-                ctx.lineTo(55, y);
-                ctx.stroke();
-                ctx.fillText((j).toFixed(1), 20, y + 5);
-            }
-}
-
-            // Draw the initial graph
-            drawGraph();
-
-            // Handle clicks on the canvas
-            canvas.addEventListener('click', function (event) {
-                const rect = canvas.getBoundingClientRect(); // Get the canvas position and size
-                const scaleX = canvas.width / rect.width; // Scale factor for X
-                const scaleY = canvas.height / rect.height; // Scale factor for Y
-
-                const x = (event.clientX - rect.left) * scaleX; // Adjusted X-coordinate
-                const y = (event.clientY - rect.top) * scaleY;  // Adjusted Y-coordinate
-
-                // Map mouse coordinates to graph values
-                const impact = ((x - 50) / 600 * 4).toFixed(2); // Adjusted for graph width (600px for graph area)
-                const probability = ((450 - y) / 400 * 4).toFixed(2); // Adjusted for graph height (400px for graph area)
-
-                if (impact >= 0 && impact <= 4 && probability >= 0 && probability <= 4) {
-                    document.getElementById(`impact_${i}`).value = impact;
-                    document.getElementById(`probability_${i}`).value = probability;
-
-                    drawGraph();
-
-                    // Draw the red cross at the clicked point
-                    ctx.beginPath();
-                    ctx.strokeStyle = 'red';
-                    ctx.moveTo(x - 5, y - 5);
-                    ctx.lineTo(x + 5, y + 5);
-                    ctx.moveTo(x - 5, y + 5);
-                    ctx.lineTo(x + 5, y - 5);
-                    ctx.stroke();
-                }
-            });
-        }
-    </script>
+    <script src="{% static 'survey/scripts.js' %}"></script>
 </body>
 </html>

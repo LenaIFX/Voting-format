@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Survey</title>
+    <link rel="stylesheet" href="{% static 'survey/styles.css' %}">
+</head>
+<body>
+    <div class="reset-container">
+        <h1>Reset Survey</h1>
+        <p>Click the button below to reset all survey data and users.</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn-reset">Reset</button>
+        </form>
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

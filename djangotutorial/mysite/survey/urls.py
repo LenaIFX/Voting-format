@@ -7,4 +7,5 @@ urlpatterns = [
     path('survey/<int:user_id>/', views.survey_graph, name='survey_graph'),
     path('thank-you/', views.thank_you, name='thank_you'),
     path('reset/', views.reset_data, name='reset_data'),
+    path("reset/", views.reset_survey, name="reset"),
 ]

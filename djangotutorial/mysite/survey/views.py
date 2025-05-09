@@ -5,6 +5,7 @@ from datetime import datetime
 from django.http import HttpResponse
 import pandas as pd
 import os
+from django.contrib import messages
 
 def register_user(request):
     if request.method == 'POST':
@@ -118,7 +119,21 @@ def reset_data(request):
         return HttpResponse("No data to back up. All survey data and user data have been cleared.")
     else:
         return HttpResponse(f"Backup saved at {backup_file}. All survey data and user data have been cleared.")
-    
+
+def reset_survey(request):
+    if request.method == "POST":
+        from .models import Survey, User
+        Survey.objects.all().delete()
+        User.objects.all().delete()
+
+        # Add a success message
+        messages.success(request, "Backup saved. All survey data and users have been cleared.")
+
+        # Redirect back to the reset page
+        return redirect("reset")
+
+    return render(request, "survey/reset.html")
+
 def graph_page(request):
     context = {
         'range': range(1, 11),  # Generates numbers from 1 to 10
