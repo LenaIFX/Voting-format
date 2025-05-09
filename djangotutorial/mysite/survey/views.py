@@ -75,64 +75,57 @@ def export_to_excel(request):
 
     # Reset 
 def reset_data(request):
-    # Step 1: Backup the data
-    data = UserAnswer.objects.select_related('user').values(
-        'user__username',          # Username
-        'user__role_in_sc',        # Role in SC
-        'user__years_working',     # Years working
-        'user__date',              # Date of voting
-        'user__time',              # Time of voting
-        'graph_number',            # Graph number
-        'impact_value',            # Impact value
-        'probability_value',       # Probability value
-    )
-
-    # Convert the data to a pandas DataFrame
-    if data.exists():  # Ensure there is data to back up
-        df = pd.DataFrame(data)
-        df.rename(columns={
-            'user__username': 'Username',
-            'user__role_in_sc': 'Role in SC',
-            'user__years_working': 'Years Working',
-            'user__date': 'Date of Voting',
-            'user__time': 'Time of Voting',
-            'graph_number': 'Graph Number',
-            'impact_value': 'Impact Value',
-            'probability_value': 'Probability Value',
-        }, inplace=True)
-
-        # Save the backup file with a timestamp
-        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-        backup_dir = os.path.join(os.getcwd(), 'backups')
-        os.makedirs(backup_dir, exist_ok=True)
-        backup_file = os.path.join(backup_dir, f'survey_backup_{timestamp}.xlsx')
-        df.to_excel(backup_file, index=False, engine='openpyxl')
-    else:
-        backup_file = "No data to back up."
-
-    # Step 2: Reset the data
-    UserAnswer.objects.all().delete()
-    UserInfo.objects.all().delete()
-
-    # Step 3: Return a confirmation message
-    if backup_file == "No data to back up.":
-        return HttpResponse("No data to back up. All survey data and user data have been cleared.")
-    else:
-        return HttpResponse(f"Backup saved at {backup_file}. All survey data and user data have been cleared.")
-
-def reset_survey(request):
     if request.method == "POST":
-        from .models import Survey, User
-        Survey.objects.all().delete()
-        User.objects.all().delete()
+        # Check if there is any data to reset
+        if not UserAnswer.objects.exists() and not UserInfo.objects.exists():
+            return HttpResponse("Data have already been reset.", status=200)
 
-        # Add a success message
-        messages.success(request, "Backup saved. All survey data and users have been cleared.")
+        # Step 1: Backup the data
+        data = UserAnswer.objects.select_related('user').values(
+            'user__username',          # Username
+            'user__role_in_sc',        # Role in SC
+            'user__years_working',     # Years working
+            'user__date',              # Date of voting
+            'user__time',              # Time of voting
+            'graph_number',            # Graph number
+            'impact_value',            # Impact value
+            'probability_value',       # Probability value,
+        )
 
-        # Redirect back to the reset page
-        return redirect("reset")
+        # Convert the data to a pandas DataFrame
+        if data.exists():  # Ensure there is data to back up
+            df = pd.DataFrame(data)
+            df.rename(columns={
+                'user__username': 'Username',
+                'user__role_in_sc': 'Role in SC',
+                'user__years_working': 'Years Working',
+                'user__date': 'Date of Voting',
+                'user__time': 'Time of Voting',
+                'graph_number': 'Graph Number',
+                'impact_value': 'Impact Value',
+                'probability_value': 'Probability Value',
+            }, inplace=True)
 
-    return render(request, "survey/reset.html")
+            # Save the backup file with a timestamp
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            backup_dir = os.path.join(os.getcwd(), 'backups')
+            os.makedirs(backup_dir, exist_ok=True)
+            backup_file = os.path.join(backup_dir, f'survey_backup_{timestamp}.xlsx')
+            df.to_excel(backup_file, index=False, engine='openpyxl')
+        else:
+            backup_file = "No data to back up."
+
+        # Step 2: Reset the data
+        UserAnswer.objects.all().delete()
+        UserInfo.objects.all().delete()
+
+        # Step 3: Return a success response
+        return HttpResponse("Backup and reset completed successfully.", status=200)
+
+    return HttpResponse("Method not allowed.", status=405)
+
+def reset_page(request):
+    return render(request, 'survey/reset.html')
 
 def graph_page(request):
     context = {
