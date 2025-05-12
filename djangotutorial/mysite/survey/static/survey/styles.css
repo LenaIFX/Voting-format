@@ -1,3 +1,45 @@
+/*-----------------------IN PROGRESS------------------------------------*/
+/* Adapt to every device */
+.reset-container {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    height: 100vh; /* Full viewport height */
+    text-align: center;
+    padding: 20px; /* Add padding for smaller screens */
+    box-sizing: border-box; /* Include padding in width/height calculations */
+}
+/* For screens smaller than 768px (tablets and phones) */
+@media (max-width: 768px) {
+    .reset-container {
+        padding: 10px; /* Reduce padding */
+    }
+
+    h1 {
+        font-size: 24px; /* Reduce font size for smaller screens */
+    }
+
+    .btn-reset {
+        padding: 10px 20px; /* Adjust button size */
+        font-size: 14px; /* Reduce button font size */
+    }
+}
+
+/* For screens smaller than 480px (phones) */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 20px; /* Further reduce font size */
+    }
+
+    .btn-reset {
+        padding: 8px 16px; /* Further adjust button size */
+        font-size: 12px; /* Further reduce button font size */
+    }
+}
+
+/*-----------------------------------------------------------------------------------*/
+
 /*REGISTER PAGE*/
 /* General body styling */
 body {
@@ -85,21 +127,6 @@ form button {
 
 form button:hover {
     background-color: #0056b3;
-}
-
-/* Responsive design for smaller screens */
-@media (max-width: 600px) {
-    .container {
-        padding: 15px;
-    }
-
-    h1 {
-        font-size: 20px;
-    }
-
-    form button {
-        font-size: 14px;
-    }
 }
 
 /*---------------------------------------------------------------------------------------------*/
