@@ -1,100 +1,43 @@
-{% load custom_tags %}
-<h1>Graph Interaction</h1>
-<!-- Explanation Section -->
-<div style="background-color: lightblue; padding: 20px; border: 1px solid #000; margin-bottom: 20px;">
-    <p><strong>You are currently voting for the impact probability of the SC Trends 2025.</strong></p>
-    <p>Please, for each graph, click on it (a red cross will appear). Do the same for each graph. When you are sure about your answer, click on Submit. Thank you for taking your time to vote.</p>
-</div>
-<form method="post">
-    {% csrf_token %}
-    {% for i in 10|range_filter %}
-        <div style="display: flex; align-items: center; margin-bottom: 20px;">
-            <!-- Graph Canvas -->
-            <canvas id="graph_{{ i }}" width="600" height="400" style="border:1px solid #000;"></canvas>
-            
-            <!-- Text Section -->
-            <div style="margin-left: 20px;">
-                <p><strong>SC Trends {{ i }}:</strong> This is the description for SC Trend {{ i }}.</p>
-            </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Voting</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'survey/styles.css' %}">
+</head>
+<body>
+    <div class="graph-page">
+        <!-- Title Section -->
+        <div class="title-container">
+            <h1>Graph Voting</h1>
+            <p class="explanation-text">
+                Click on the graph to vote. A red cross will appear at your selected point. When you're done, click Submit. Thank you for your participation!
+            </p>
         </div>
-        <input type="hidden" name="impact_{{ i }}" id="impact_{{ i }}">
-        <input type="hidden" name="probability_{{ i }}" id="probability_{{ i }}">
-    {% endfor %}
-    <button type="submit" style="background-color: blue; color: white; font-weight: bold; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 5px;">Submit</button>
-</form>
-<script>
-    for (let i = 1; i <= 10; i++) {
-        const canvas = document.getElementById(`graph_${i}`);
-        const ctx = canvas.getContext('2d');
 
-        // Function to draw the graph
-        function drawGraph() {
-            // Clear the canvas
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        <!-- Graph Section -->
+        <div class="graph-container">
+            <form method="post">
+                {% csrf_token %}
+                {% for i in range %}
+                    <div class="graph-wrapper">
+                        <canvas id="graph_{{ i }}" width="1000" height="600"></canvas>
+                        <input type="hidden" name="impact_{{ i }}" id="impact_{{ i }}">
+                        <input type="hidden" name="probability_{{ i }}" id="probability_{{ i }}">
+                    </div>
+                {% endfor %}
+                <!-- Submit Button Section -->
+                    <div class="button-container">
+                        <button type="submit" class="btn-submit">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
 
-            // Draw the graph axes
-            ctx.beginPath();
-            ctx.moveTo(50, 350); // X-axis
-            ctx.lineTo(550, 350);
-            ctx.moveTo(50, 350); // Y-axis
-            ctx.lineTo(50, 50);
-            ctx.stroke();
+            
 
-            // Add labels for axes
-            ctx.font = '14px Arial';
-            ctx.fillText('Probability (0 to 4)', 250, 380); // X-axis label
-            ctx.fillText('Impact (0 to 4)', 10, 200); // Y-axis label
-
-            // Add tick marks and labels
-            for (let j = 0; j <= 4; j++) { // Update to 4 for the new range
-                const x = 50 + j * 125; // X-axis ticks adjusted for new range
-                const y = 350 - j * 70; // Y-axis ticks adjusted for new range
-
-                // X-axis ticks
-                ctx.moveTo(x, 345);
-                ctx.lineTo(x, 355);
-                ctx.stroke();
-                ctx.fillText((j).toFixed(1), x - 10, 370);
-
-                // Y-axis ticks
-                ctx.moveTo(45, y);
-                ctx.lineTo(55, y);
-                ctx.stroke();
-                ctx.fillText((j).toFixed(1), 20, y + 5);
-            }
-        }
-
-        // Draw the initial graph
-        drawGraph();
-
-        // Handle clicks on the canvas
-        canvas.addEventListener('click', function (event) {
-            const rect = canvas.getBoundingClientRect();
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
-
-            // Convert canvas coordinates to graph values
-            const impact = ((x - 50) / 500).toFixed(2); // X-axis (Impact)
-            const probability = ((350 - y) / 300).toFixed(2); // Y-axis (Probability)
-
-            // Ensure the click is within the graph bounds
-            if (impact >= 0 && impact <= 1 && probability >= 0 && probability <= 1) {
-                // Store the values in hidden inputs
-                document.getElementById(`impact_${i}`).value = impact;
-                document.getElementById(`probability_${i}`).value = probability;
-
-                // Redraw the graph to clear the previous cross
-                drawGraph();
-
-                // Draw a red cross at the clicked point
-                ctx.beginPath();
-                ctx.strokeStyle = 'red';
-                ctx.moveTo(x - 5, y - 5);
-                ctx.lineTo(x + 5, y + 5);
-                ctx.moveTo(x - 5, y + 5);
-                ctx.lineTo(x + 5, y - 5);
-                ctx.stroke();
-            }
-        });
-    }
-</script>
+    <script src="{% static 'survey/scripts.js' %}"></script>
+</body>
+</html>

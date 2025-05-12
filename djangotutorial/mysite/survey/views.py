@@ -5,6 +5,7 @@ from datetime import datetime
 from django.http import HttpResponse
 import pandas as pd
 import os
+from django.contrib import messages
 
 def register_user(request):
     if request.method == 'POST':
@@ -74,47 +75,60 @@ def export_to_excel(request):
 
     # Reset 
 def reset_data(request):
-    # Step 1: Backup the data
-    data = UserAnswer.objects.select_related('user').values(
-        'user__username',          # Username
-        'user__role_in_sc',        # Role in SC
-        'user__years_working',     # Years working
-        'user__date',              # Date of voting
-        'user__time',              # Time of voting
-        'graph_number',            # Graph number
-        'impact_value',            # Impact value
-        'probability_value',       # Probability value
-    )
+    if request.method == "POST":
+        # Check if there is any data to reset
+        if not UserAnswer.objects.exists() and not UserInfo.objects.exists():
+            return HttpResponse("Data have already been reset.", status=200)
 
-    # Convert the data to a pandas DataFrame
-    if data.exists():  # Ensure there is data to back up
-        df = pd.DataFrame(data)
-        df.rename(columns={
-            'user__username': 'Username',
-            'user__role_in_sc': 'Role in SC',
-            'user__years_working': 'Years Working',
-            'user__date': 'Date of Voting',
-            'user__time': 'Time of Voting',
-            'graph_number': 'Graph Number',
-            'impact_value': 'Impact Value',
-            'probability_value': 'Probability Value',
-        }, inplace=True)
+        # Step 1: Backup the data
+        data = UserAnswer.objects.select_related('user').values(
+            'user__username',          # Username
+            'user__role_in_sc',        # Role in SC
+            'user__years_working',     # Years working
+            'user__date',              # Date of voting
+            'user__time',              # Time of voting
+            'graph_number',            # Graph number
+            'impact_value',            # Impact value
+            'probability_value',       # Probability value,
+        )
 
-        # Save the backup file with a timestamp
-        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-        backup_dir = os.path.join(os.getcwd(), 'backups')
-        os.makedirs(backup_dir, exist_ok=True)
-        backup_file = os.path.join(backup_dir, f'survey_backup_{timestamp}.xlsx')
-        df.to_excel(backup_file, index=False, engine='openpyxl')
-    else:
-        backup_file = "No data to back up."
+        # Convert the data to a pandas DataFrame
+        if data.exists():  # Ensure there is data to back up
+            df = pd.DataFrame(data)
+            df.rename(columns={
+                'user__username': 'Username',
+                'user__role_in_sc': 'Role in SC',
+                'user__years_working': 'Years Working',
+                'user__date': 'Date of Voting',
+                'user__time': 'Time of Voting',
+                'graph_number': 'Graph Number',
+                'impact_value': 'Impact Value',
+                'probability_value': 'Probability Value',
+            }, inplace=True)
 
-    # Step 2: Reset the data
-    UserAnswer.objects.all().delete()
-    UserInfo.objects.all().delete()
+            # Save the backup file with a timestamp
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            backup_dir = os.path.join(os.getcwd(), 'backups')
+            os.makedirs(backup_dir, exist_ok=True)
+            backup_file = os.path.join(backup_dir, f'survey_backup_{timestamp}.xlsx')
+            df.to_excel(backup_file, index=False, engine='openpyxl')
+        else:
+            backup_file = "No data to back up."
 
-    # Step 3: Return a confirmation message
-    if backup_file == "No data to back up.":
-        return HttpResponse("No data to back up. All survey data and user data have been cleared.")
-    else:
-        return HttpResponse(f"Backup saved at {backup_file}. All survey data and user data have been cleared.")
+        # Step 2: Reset the data
+        UserAnswer.objects.all().delete()
+        UserInfo.objects.all().delete()
+
+        # Step 3: Return a success response
+        return HttpResponse("Backup and reset completed successfully.", status=200)
+
+    return HttpResponse("Method not allowed.", status=405)
+
+def reset_page(request):
+    return render(request, 'survey/reset.html')
+
+def graph_page(request):
+    context = {
+        'range': range(1, 11),  # Generates numbers from 1 to 10
+    }
+    return render(request, 'survey/graph.html', context)

@@ -3,7 +3,7 @@ from django.db import models
 class UserInfo(models.Model):
     username = models.CharField(max_length=100)
     role_in_sc = models.CharField(max_length=100)
-    years_working = models.IntegerField()
+    years_working = models.FloatField()
     date = models.DateField(auto_now_add=True)
     time = models.TimeField(auto_now_add=True)
 
