@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-&#x1h!r3g(l7zp
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = False
+DEBUG = True if os.environ.get('DEBUG', 'True') == 'True' else False
 
 ALLOWED_HOSTS = ['LenaIFX.pythonanywhere.com', '127.0.0.1']
 CSRF_TRUSTED_ORIGINS = ['https://LenaIFX.pythonanywhere.com']
