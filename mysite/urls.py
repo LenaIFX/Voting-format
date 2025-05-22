@@ -19,7 +19,18 @@ from django.urls import path, include
 from django.http import HttpResponse
 
 def home(request):
-    return HttpResponse("Welcome to the home page!")
+    return HttpResponse("""
+        <h1>Welcome to the home page!</h1>
+        <ul>
+            <li><a href="/register/">Register</a></li>
+            <li><a href="/thank-you/">Thank You</a></li>
+            <li><a href="/reset/">Reset</a></li>
+            <li><a href="/reset-data/">Reset Data</a></li>
+            <li><a href="/export/">Export to Excel</a></li>
+            <li><a href="/survey/">Survey</a></li>
+            <li><a href="/admin/">Admin</a></li>
+        </ul>
+    """)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
