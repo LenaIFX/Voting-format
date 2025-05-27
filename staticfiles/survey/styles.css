@@ -1,14 +1,13 @@
 /*-----------------------IN PROGRESS------------------------------------*/
 canvas {
-    width: 100%;
-    max-width: 700px; /* or your preferred max width */
-    height: auto;
-    aspect-ratio: 3/2;
     display: block;
-    margin-bottom: 40px; /* Add space below each graph */
-    margin: auto;
-    
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+    max-width: 100%;
+    height: auto;
 }
+
 /*-----------------------------------------------------------------------------------*/
 
 /*REGISTER PAGE*/
@@ -146,7 +145,7 @@ form button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 60px; /* Increase this value for more space around the title */
+    margin-bottom: 30px; /* Increase this value for more space around the title */
     padding-bottom: 0;   /* Optional: ensure no extra padding */
 }
 .graph-title {

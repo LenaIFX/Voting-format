@@ -1,13 +1,12 @@
 // Configuration for graph dimensions
 const graphConfig = {
-    width: 1000,
-    height: 600,
-    graphWidth: 600,
-    graphHeight: 400,
-    graphX: 50,
-    graphY: 50,
+    width: 900,   // match your canvas width
+    height: 700,  // match your canvas height
+    graphWidth: 700,  // adjust as needed for margins
+    graphHeight: 500,
+    graphX: 100,
+    graphY: 100,
 };
-
 // Function to draw the graph
 function drawGraph(ctx) {
     const { graphWidth, graphHeight, graphX, graphY } = graphConfig;
