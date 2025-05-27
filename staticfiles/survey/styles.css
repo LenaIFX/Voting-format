@@ -1,43 +1,12 @@
 /*-----------------------IN PROGRESS------------------------------------*/
-/* Adapt to every device */
-.reset-container {
-    display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    height: 100vh; /* Full viewport height */
-    text-align: center;
-    padding: 20px; /* Add padding for smaller screens */
-    box-sizing: border-box; /* Include padding in width/height calculations */
+canvas {
+    width: 100%;
+    max-width: 700px; /* or your preferred max width */
+    height: auto;
+    aspect-ratio: 3/2;
+    display: block;
+    margin: auto;
 }
-/* For screens smaller than 768px (tablets and phones) */
-@media (max-width: 768px) {
-    .reset-container {
-        padding: 10px; /* Reduce padding */
-    }
-
-    h1 {
-        font-size: 24px; /* Reduce font size for smaller screens */
-    }
-
-    .btn-reset {
-        padding: 10px 20px; /* Adjust button size */
-        font-size: 14px; /* Reduce button font size */
-    }
-}
-
-/* For screens smaller than 480px (phones) */
-@media (max-width: 480px) {
-    h1 {
-        font-size: 20px; /* Further reduce font size */
-    }
-
-    .btn-reset {
-        padding: 8px 16px; /* Further adjust button size */
-        font-size: 12px; /* Further reduce button font size */
-    }
-}
-
 /*-----------------------------------------------------------------------------------*/
 
 /*REGISTER PAGE*/
