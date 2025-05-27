@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Backup and Reset</title>
+    <title>Reset</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'survey/styles.css' %}">
 </head>
 <body>
     <div class="reset-container">
-        <h1>Backup and Reset</h1>
-        <p>Click the button below to perform a backup and reset all survey data.</p>
+        <h1>Reset</h1>
+        <p>Click the button below to perform the reset of all survey data.</p>
         <button id="reset-button" class="btn-reset">Reset</button>
-        <p id="status-message" style="margin-top: 20px; color: green; display: none;">Backup and reset completed successfully.</p>
+        <p id="status-message" style="margin-top: 20px; color: green; display: none;">Reset completed successfully.</p>
     </div>
 
     <script>
@@ -27,7 +27,7 @@
                 .then(response => response.text()) // Get the response text
                 .then(message => {
                     alert(message); // Display the message from the server
-                    if (message === "Backup and reset completed successfully.") {
+                    if (message === "Reset completed successfully.") {
                         document.getElementById("status-message").style.display = "block";
                         document.getElementById("status-message").innerText = message;
                     }
