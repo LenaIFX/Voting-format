@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,10 +22,10 @@
         <div class="graph-container">
             <form method="post">
                 {% csrf_token %}
-                {% for i in range %}
+                {% for i, title in graph_data %}
                     <div class="graph-wrapper">
-                        <!--<canvas id="graph_{{ i }}" width="1000" height="600"></canvas>-->
-                        <canvas id="graph_{{ i }}" style="width:100%;max-width:700px;height:auto;aspect-ratio:3/2;display:block;margin:auto;"></canvas>
+                        <h2 class="graph-title">{{ title }}</h2>
+                        <canvas id="graph_{{ i }}" width="700" height="466"></canvas>
                         <input type="hidden" name="impact_{{ i }}" id="impact_{{ i }}">
                         <input type="hidden" name="probability_{{ i }}" id="probability_{{ i }}">
                     </div>

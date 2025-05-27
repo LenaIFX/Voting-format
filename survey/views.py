@@ -36,7 +36,16 @@ def survey_graph(request, user_id):
                     probability_value=float(probability)
                 )
         return redirect('thank_you')
-    return render(request, 'survey/graph.html', {'user_id': user_id, 'range': range(1, 11)})
+    graph_titles = [
+        "Risk Analysis", "Market Trends", "Customer Feedback", "Financial Overview",
+        "Product Roadmap", "Team Performance", "Innovation Index", "Compliance Check",
+        "Sustainability", "Future Forecast"
+    ]
+    graph_data = zip(range(1, 11), graph_titles)
+    return render(request, 'survey/graph.html', {
+        'user_id': user_id,
+        'graph_data': graph_data,
+    })
 
 def thank_you(request):
     return render(request, 'survey/thank_you.html')

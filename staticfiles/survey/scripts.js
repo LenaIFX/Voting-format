@@ -7,11 +7,7 @@ const graphConfig = {
     graphX: 50,
     graphY: 50,
 };
-function resizeCanvasToDisplaySize(canvas) {
-    const rect = canvas.getBoundingClientRect();
-    canvas.width = rect.width;
-    canvas.height = rect.height;
-}
+
 // Function to draw the graph
 function drawGraph(ctx) {
     const { graphWidth, graphHeight, graphX, graphY } = graphConfig;
@@ -220,21 +216,16 @@ function handleCanvasClick(event, canvas, ctx, i) {
 document.addEventListener("DOMContentLoaded", () => {
     for (let i = 1; i <= 10; i++) {
         const canvas = document.getElementById(`graph_${i}`);
-        resizeCanvasToDisplaySize(canvas);
         const ctx = canvas.getContext("2d");
 
-        // Set graphConfig for this canvas
-        window.graphConfig = {
-            width: canvas.width,
-            height: canvas.height,
-            graphWidth: canvas.width - 100,  // adjust margins as needed
-            graphHeight: canvas.height - 100,
-            graphX: 50,
-            graphY: 50,
-        };
+        // Set canvas dimensions
+        canvas.width = graphConfig.width;
+        canvas.height = graphConfig.height;
 
+        // Draw the initial graph
         drawGraph(ctx);
 
+        // Add click event listener
         canvas.addEventListener("click", (event) => handleCanvasClick(event, canvas, ctx, i));
     }
 });

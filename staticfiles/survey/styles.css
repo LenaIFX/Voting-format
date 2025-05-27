@@ -5,7 +5,9 @@ canvas {
     height: auto;
     aspect-ratio: 3/2;
     display: block;
+    margin-bottom: 40px; /* Add space below each graph */
     margin: auto;
+    
 }
 /*-----------------------------------------------------------------------------------*/
 
@@ -138,6 +140,20 @@ form button:hover {
     margin-bottom: 20px;
     text-align: right; /* Align the text to the right */
     margin-right: 30%; /* Adjust this value to align with the middle of the title */
+}
+
+.graph-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 60px; /* Increase this value for more space around the title */
+    padding-bottom: 0;   /* Optional: ensure no extra padding */
+}
+.graph-title {
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 0;
 }
 
 /* Graph Section */
