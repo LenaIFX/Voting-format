@@ -10,9 +10,9 @@ def export_to_excel(modeladmin, request, queryset):
         answers = UserAnswer.objects.filter(user=user)
         for answer in answers:
             user_data.append({
-                'Username': user.username,
-                'Role in SC': user.role_in_sc,
-                'Years Working': user.years_working,
+                'Name': user.username,
+                'Role in Supply Chain': user.role_in_sc,
+                'Years of Working': user.years_working,
                 'Date': user.date,
                 'Time': user.time,
                 'Graph Number': answer.graph_number,
