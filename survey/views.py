@@ -37,9 +37,16 @@ def survey_graph(request, user_id):
                 )
         return redirect('thank_you')
     graph_titles = [
-        "Risk Analysis", "Market Trends", "Customer Feedback", "Financial Overview",
-        "Product Roadmap", "Team Performance", "Innovation Index", "Compliance Check",
-        "Sustainability", "Future Forecast"
+        "1. Navigating Global Uncertainty: Geopolitical Risks, Trade Wars, and the Resilience of Supply Chain Finance",
+        "2. Building Digital Trust: Secure Smart Contracts, Cybersecurity, Decentralization and Risk Management", 
+        "3. Closing the Loop: Circular Economy Trends and Technologies Transforming Sustainable Supply Chain Management", 
+        "4.Semantic Web: Enhancing Transparency, interoperability and efficiency",
+        "5. Unlocking Supply Chain Efficiency: The Power of Digital twins in metaverse-based projects",
+        "6. Leveraging AI: combinination of Gen AI, Applied AI, and Complex Machine Learning ",
+        "7. Safeguarding ethical standards and regulatory fragmentation", 
+        "8. The Future of Work: Upskilling for Cognitive Abilities in a Machine-Driven World",
+        "9. Advanced Connectivity: unlocking Real-Time Monitoring, Enhanced Tracability, and Data-Driven Insights", 
+        "10. Autonomous logistic: human-machine collaboration for optimizing logistic "
     ]
     graph_data = zip(range(1, 11), graph_titles)
     return render(request, 'survey/graph.html', {
@@ -66,9 +73,9 @@ def export_to_excel(request):
     # Convert the data to a pandas DataFrame
     df = pd.DataFrame(data)
     df.rename(columns={
-        'user__username': 'Username',
-        'user__role_in_sc': 'Role in SC',
-        'user__years_working': 'Years Working',
+        'user__username': 'Name',
+        'user__role_in_sc': 'Role in Supply Chain',
+        'user__years_working': 'Years of Working',
         'user__date': 'Date of Voting',
         'user__time': 'Time of Voting',
         'graph_number': 'Graph Number',
@@ -106,9 +113,9 @@ def reset_data(request):
         if data.exists():  # Ensure there is data to back up
             df = pd.DataFrame(data)
             df.rename(columns={
-                'user__username': 'Username',
-                'user__role_in_sc': 'Role in SC',
-                'user__years_working': 'Years Working',
+                'user__username': 'Name',
+                'user__role_in_sc': 'Role in Supply Chain',
+                'user__years_working': 'Years of Working',
                 'user__date': 'Date of Voting',
                 'user__time': 'Time of Voting',
                 'graph_number': 'Graph Number',
