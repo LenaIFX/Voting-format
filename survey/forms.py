@@ -9,3 +9,8 @@ class UserInfoForm(forms.ModelForm):
         widgets = {
             'years_working': forms.NumberInput(attrs={'step': '0.1'}),  # Allows float input
         }
+        labels = {
+            'username': 'Name',  # Change this text
+            'role_in_sc': 'Role in Supply Chain',  # Change this text
+            'years_working': 'Years of Working',  # Change this text
+        }
