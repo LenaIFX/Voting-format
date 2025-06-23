@@ -37,12 +37,12 @@ def survey_graph(request, user_id):
                 )
         return redirect('thank_you')
     graph_titles = [
-        "1. Navigating Global Uncertainty: Geopolitical Risks, Trade Wars, and the Resilience of Supply Chain Finance",
+        "1. Navigating Global Uncertainty: Geopolitical Risks and Trade Wars",
         "2. Building Digital Trust: Secure Smart Contracts, Cybersecurity, Decentralization and Risk Management", 
         "3. Closing the Loop: Circular Economy Trends and Technologies Transforming Sustainable Supply Chain Management", 
         "4. Semantic Web: Enhancing Transparency, Interoperability and Efficiency",
         "5. Unlocking Supply Chain Efficiency: The Power of Digital Twins in Metaverse-Based Projects",
-        "6. Leveraging AI: Combination of Gen AI, Applied AI, and Complex Machine Learning",
+        "6. Leveraging AI: Combination of Gen AI, Applied AI, and Machine Learning",
         "7. Safeguarding Ethical Standards and Regulatory Fragmentation",
         "8. The Future of Work: Upskilling for Cognitive Abilities in a Machine-Driven World",
         "9. Advanced Connectivity: Unlocking Real-Time Monitoring, Enhanced Traceability, and Data-Driven Insights",
