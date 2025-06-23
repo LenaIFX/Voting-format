@@ -16,15 +16,8 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-&#x1h!r3g(l7zpkz1t9-gbxoq$5x669w*#@%w(s)%kmo2=2ofo'
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
 ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1']
 
 
