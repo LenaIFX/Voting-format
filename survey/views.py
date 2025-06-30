@@ -37,7 +37,6 @@ def survey_graph(request, user_id):
                 )
         return redirect('thank_you')
     graph_titles = [
-        "5. Unlocking Supply Chain Efficiency: The Power of Digital Twins in Metaverse-Based Projects",
         "1. Navigating Global Uncertainty: Geoplotitical Risks and Chances",
         "2. Building Digital Trust", 
         "3. Circular Economy  and Sustainable Supply Chain", 
