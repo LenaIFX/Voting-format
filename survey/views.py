@@ -37,16 +37,17 @@ def survey_graph(request, user_id):
                 )
         return redirect('thank_you')
     graph_titles = [
-        "1. Navigating Global Uncertainty: Geopolitical Risks and Trade Wars",
-        "2. Building Digital Trust: Secure Smart Contracts, Cybersecurity, Decentralization and Risk Management", 
-        "3. Closing the Loop: Circular Economy Trends and Technologies Transforming Sustainable Supply Chain Management", 
-        "4. Semantic Web: Enhancing Transparency, Interoperability and Efficiency",
         "5. Unlocking Supply Chain Efficiency: The Power of Digital Twins in Metaverse-Based Projects",
-        "6. Leveraging AI: Combination of Gen AI, Applied AI, and Machine Learning",
-        "7. Safeguarding Ethical Standards and Regulatory Fragmentation",
-        "8. The Future of Work: Upskilling for Cognitive Abilities in a Machine-Driven World",
-        "9. Advanced Connectivity: Unlocking Real-Time Monitoring, Enhanced Traceability, and Data-Driven Insights",
-        "10. Autonomous Logistics: Human-Machine Collaboration for Optimizing Logistics"
+        "1. Navigating Global Uncertainty: Geoplotitical Risks and Chances",
+        "2. Building Digital Trust", 
+        "3. Circular Economy  and Sustainable Supply Chain", 
+        "4. Semantic Web",
+        "5. The Power of Digital Twins",
+        "6. Leveraging AI",
+        "7. Safeguarding Ethical Standards and Regulations",
+        "8. Upskilling for the Future: cognitive skills for the hybrid working",
+        "9. Advanced Connectivity",
+        "10. Autonomous Logistics"
     ]
     graph_data = zip(range(1, 11), graph_titles)
     return render(request, 'survey/graph.html', {
@@ -137,7 +138,7 @@ def reset_data(request):
         UserInfo.objects.all().delete()
 
         # Step 3: Return a success response
-        return HttpResponse("Backup and reset completed successfully.", status=200)
+        return HttpResponse("Reset completed successfully.", status=200)
 
     return HttpResponse("Method not allowed.", status=405)
 
