@@ -40,7 +40,7 @@ def survey_graph(request, user_id):
         "1. Navigating Global Uncertainty: Geopolitical Risks, Trade Wars, and the Resilience of Supply Chain Finance",
         "2. Building Digital Trust: Secure Smart Contracts, Cybersecurity, Decentralization and Risk Management", 
         "3. Closing the Loop: Circular Economy Trends and Technologies Transforming Sustainable Supply Chain Management", 
-        "4.Semantic Web: Enhancing Transparency, interoperability and efficiency",
+        "4. Semantic Web: Enhancing Transparency, interoperability and efficiency",
         "5. Unlocking Supply Chain Efficiency: The Power of Digital twins in metaverse-based projects",
         "6. Leveraging AI: combinination of Gen AI, Applied AI, and Complex Machine Learning ",
         "7. Safeguarding ethical standards and regulatory fragmentation", 
